@@ -16,16 +16,19 @@
     "default_title": "Loop Video"
   },
   "event_rules": [{
-    "event": "declarativeContent.onPageChanged",
+    "event": "webNavigation.onDOMContentLoaded",
     "actions": [{ "type": "declarativeContent.ShowPageAction" }],
     "conditions": [{
       "type": "declarativeContent.PageStateMatcher",
-      "pageUrl": { "urlContains": "youtube.com/watch?v=" }
+      "pageUrl": {
+        "urlContains": "youtube.com/watch?v="
+      }
     }]
   }],
 
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": ["js/background.js"],
+    "persistent": false
   },
 
   "permissions": ["activeTab"]
