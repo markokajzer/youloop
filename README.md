@@ -8,10 +8,8 @@ I decided to implement this extension after looking into the code of some others
 
 ## Todo
 
-+ Bug: Shown on Facebook.com if youtube video get loaded?
-
 + Provide 38px icons
 + Update Title
 + Find better icons
 + Push to Chrome Webstore
-  + How to push updates?
+  + Make screenshots

@@ -16,7 +16,7 @@
     "default_title": "Loop Video"
   },
   "event_rules": [{
-    "event": "webNavigation.onDOMContentLoaded",
+    "event": "declarativeContent.onPageChanged",
     "actions": [{ "type": "declarativeContent.ShowPageAction" }],
     "conditions": [{
       "type": "declarativeContent.PageStateMatcher",
