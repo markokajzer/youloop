@@ -19,4 +19,5 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 // Receive message from content_script update accordingly
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   chrome.pageAction.setIcon({path: "icons/icon_" + request["state"] + ".png", tabId: sender.tab.id});
+  chrome.pageAction.setTitle({title: request["title"], tabId: sender.tab.id});
 });

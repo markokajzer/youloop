@@ -9,7 +9,8 @@ function toggleLoopState() {
   video.loop = !video.loop;
 
   state = video.loop ? "on" : "off";
-  return { state: state };
+  title = video.loop ? "Stop Looping" : "Loop Video";
+  return { state: state, title: title };
 }
 
 // Send message to background.js
