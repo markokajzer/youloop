@@ -15,21 +15,11 @@
     "default_icon": "icons/icon_off.png",
     "default_title": "Loop Video"
   },
-  "event_rules": [{
-    "event": "declarativeContent.onPageChanged",
-    "actions": [{ "type": "declarativeContent.ShowPageAction" }],
-    "conditions": [{
-      "type": "declarativeContent.PageStateMatcher",
-      "pageUrl": {
-        "urlContains": "youtube.com/watch?v="
-      }
-    }]
-  }],
 
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false
   },
 
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab", "webNavigation"]
 }

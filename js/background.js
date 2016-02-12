@@ -1,3 +1,14 @@
+// Only show if on youtube
+chrome.webNavigation.onDOMContentLoaded.addListener(function(tab) {
+    console.log("contentloaded");
+    chrome.pageAction.show(tab.tabId);
+  }, {
+    url: [
+      { hostContains: 'youtube.com' }, { urlContains: 'watch?v=' }
+    ]
+  }
+);
+
 // Whenever clicked, execute content_script
 chrome.pageAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript(null, {
