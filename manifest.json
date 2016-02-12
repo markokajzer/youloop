@@ -3,19 +3,27 @@
   "author": "Marko Kajzer",
   "name": "YouLoop",
   "version": "0.1.0",
-
   "description": "Puts YouTube videos on loop with one click",
-
   "icons": {
     "19": "icons/icon_on.png",
     "32": "icons/icon_32px.png",
     "48": "icons/icon_48px.png",
     "128": "icons/icon_128px.png"
   },
+
   "page_action": {
     "default_icon": "icons/icon_off.png",
     "default_title": "Loop Video"
   },
+  "event_rules": [{
+    "event": "declarativeContent.onPageChanged",
+    "actions": [{ "type": "declarativeContent.ShowPageAction" }],
+    "conditions": [{
+      "type": "declarativeContent.PageStateMatcher",
+      "pageUrl": { "urlContains": "youtube.com/watch?v=" }
+    }]
+  }],
+
   "background": {
     "scripts": ["js/background.js"]
   },
