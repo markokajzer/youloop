@@ -1,3 +1,5 @@
+'use strict';
+
 // Only show if on youtube
 chrome.webNavigation.onDOMContentLoaded.addListener(function(tab) {
     console.log("contentloaded");

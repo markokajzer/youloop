@@ -8,6 +8,8 @@ I decided to implement this extension after looking into the code of some others
 
 ## Todo
 
++ Bug: Icon remains the same when track in a YouTube playlist is changed
+
 + Find better icons
 + Push to Chrome Webstore
   + Make screenshots
