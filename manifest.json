@@ -1,35 +1,25 @@
 {
   "manifest_version": 2,
   "author": "Marko Kajzer",
-  "name": "YouLoop",
+  "name": "YouLoopContentScript",
   "version": "0.1.0",
   "description": "Puts YouTube videos on loop with one click",
   "icons": {
     "19": "icons/icon_on.png",
     "32": "icons/icon_32px.png",
+    "38": "icons/icon_38px.png",
     "48": "icons/icon_48px.png",
     "128": "icons/icon_128px.png"
   },
 
-  "page_action": {
-    "default_icon": "icons/icon_off.png",
-    "default_title": "Loop Video"
-  },
-  "event_rules": [{
-    "event": "webNavigation.onDOMContentLoaded",
-    "actions": [{ "type": "declarativeContent.ShowPageAction" }],
-    "conditions": [{
-      "type": "declarativeContent.PageStateMatcher",
-      "pageUrl": {
-        "urlContains": "youtube.com/watch?v="
-      }
-    }]
-  }],
-
-  "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
-  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.youtube.com/watch?v=*", "https://www.youtube.com/watch?v=*"],
+      "css": ["styles/youloop.css"],
+      "js": ["js/content_script.js"],
+      "run_at": "document_end"
+    }
+  ],
 
   "permissions": ["activeTab"]
 }
