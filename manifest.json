@@ -3,7 +3,7 @@
   "author": "Marko Kajzer",
   "name": "YouLoop",
   "version": "0.1.0",
-  "description": "Puts YouTube videos on loop with one click",
+  "description": "Put YouTube videos on loop with one click",
   "icons": {
     "19": "icons/icon_on.png",
     "32": "icons/icon_32px.png",
