@@ -4,5 +4,6 @@ a.youloop-button {
 
 a.youloop-button svg {
   vertical-align: middle;
+  margin-bottom: 2px;
   fill: white;
 }
