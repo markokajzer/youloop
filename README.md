@@ -9,3 +9,5 @@ I decided to implement this extension after looking into the code of some others
 ## Todo
 
 + Push to Chrome Web Store
++ Make insanely good screen shots
++ Add internationalization
