@@ -8,5 +8,4 @@ I decided to implement this extension after looking into the code of some others
 
 ## Todo
 
-+ Push to Chrome Webstore
-  + How to push updates?
++ Push to Chrome Web Store
