@@ -8,8 +8,6 @@ const COLOR_ON = '#f12b24';
 // Function to create svg for button
 function getSVG() {
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('height', '70%');
-  svg.setAttribute('width', '70%');
   svg.setAttribute('viewBox', '0 0 24 24');
   svg.setAttribute('fill', COLOR_OFF);
   var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
