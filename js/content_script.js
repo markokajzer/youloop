@@ -52,18 +52,25 @@ function toggleLoopState() {
 
 // Add a button for toggling loop to the page
 function addToggleControls() {
+  var controls = document.querySelector('div.ytp-left-controls');
+  if(!controls) return false;
   var newButton = document.createElement('a');
   newButton.className = 'ytp-button youloop-button';
   newButton.title = TITLE_OFF;
   newButton.onclick = function() { toggleLoopState(); }
   newButton.appendChild(getSVG());
-  var controls = document.querySelector('div.ytp-left-controls');
   controls.appendChild(newButton);
+  return true;
 }
 
 function init() {
-  addToggleControls();
-  addObserver();
+  var checkForVideo = setInterval(function () {
+    if(addToggleControls()) {
+      addObserver();
+      clearInterval(checkForVideo);
+    }
+  }, 500);
 }
 
+console.log("Enjoy the awesome music!");
 init();
