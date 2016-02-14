@@ -18,6 +18,8 @@ function getSVG() {
   return svg;
 }
 
+// Add observer to video element to check if source was changed
+// This happens when changing to another video in a playlist
 function addObserver() {
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
