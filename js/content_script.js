@@ -4,6 +4,9 @@ const TITLE_OFF = 'Loop Video';
 const TITLE_ON = 'Stop Looping';
 const COLOR_OFF = '#fff';
 const COLOR_ON = '#f12b24';
+const DEG_OFF = 0;
+const DEG_ON = 90;
+var rotated = false;
 
 // Function to create svg for button
 function getSVG() {
@@ -32,8 +35,12 @@ function addObserver() {
 
 // Update title and color of loop controls
 function updateToggleControls(newColor, newTitle) {
+  var svg = document.querySelector('.youloop-button svg');
+  var deg = rotated ? DEG_OFF : DEG_ON;
+  rotated = !rotated;
+  svg.style.fill = newColor;
+  svg.style.transform = 'rotate(' + deg + 'deg)';
   document.querySelector('.youloop-button').setAttribute('title', newTitle);
-  document.querySelector('.youloop-button svg').setAttribute('style', 'fill: ' + newColor);
 }
 
 // Change loop state and start video again if ended
