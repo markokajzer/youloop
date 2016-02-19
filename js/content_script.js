@@ -4,8 +4,8 @@ const TITLE_OFF = 'Loop Video';
 const TITLE_ON = 'Stop Looping';
 const COLOR_OFF = '#fff';
 const COLOR_ON = '#f12b24';
-const DEG_OFF = 0;
-const DEG_ON = 90;
+const DEGREE_OFF = 0;
+const DEGREE_ON = 90;
 var rotated = false;
 
 // Function to create svg for button
@@ -25,7 +25,8 @@ function addObserver() {
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if(mutation.attributeName == 'src') {
-        updateToggleControls(COLOR_OFF, TITLE_OFF);
+        rotated = false;
+        updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
       }
     });
   });
@@ -34,12 +35,10 @@ function addObserver() {
 }
 
 // Update title and color of loop controls
-function updateToggleControls(newColor, newTitle) {
+function updateToggleControls(newColor, newTitle, newDegree) {
   var svg = document.querySelector('.youloop-button svg');
-  var deg = rotated ? DEG_OFF : DEG_ON;
-  rotated = !rotated;
   svg.style.fill = newColor;
-  svg.style.transform = 'rotate(' + deg + 'deg)';
+  svg.style.transform = 'rotate(' + newDegree + 'deg)';
   document.querySelector('.youloop-button').setAttribute('title', newTitle);
 }
 
@@ -51,10 +50,12 @@ function toggleLoopState() {
     video.play();
   }
   video.loop = !video.loop;
+  rotated = !rotated;
 
   var color = video.loop ? COLOR_ON : COLOR_OFF;
   var title = video.loop ? TITLE_ON : TITLE_OFF;
-  updateToggleControls(color, title);
+  var degree = video.loop ? DEGREE_ON : DEGREE_OFF;
+  updateToggleControls(color, title, degree);
 }
 
 // Add a button for toggling loop to the page
