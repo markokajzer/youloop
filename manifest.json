@@ -5,7 +5,7 @@
   "version": "0.3.0",
   "description": "Put YouTube videos on loop with one click",
   "icons": {
-    "19": "icons/icon_on.png",
+    "19": "icons/icon_19px.png",
     "32": "icons/icon_32px.png",
     "38": "icons/icon_38px.png",
     "48": "icons/icon_48px.png",
