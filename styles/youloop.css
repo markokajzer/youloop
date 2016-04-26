@@ -3,9 +3,9 @@ a.youloop-button {
 }
 
 a.youloop-button svg {
-  margin-bottom: 3px;
-  height: 20px;
-  width: 20px;
+  margin-bottom: 2px;
+  height: 18px;
+  width: 18px;
   vertical-align: middle;
   fill: white;
   transition-duration: .3s;
