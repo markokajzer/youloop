@@ -24,7 +24,7 @@ function getSVG() {
 function addObserver() {
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if(mutation.attributeName == 'src') {
+      if(mutation.attributeName === 'src') {
         rotated = false;
         updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
       }
@@ -80,5 +80,5 @@ function init() {
   }, 500);
 }
 
-console.log("Enjoy the awesome music!");
+console.log('Enjoy the awesome music!');
 init();
