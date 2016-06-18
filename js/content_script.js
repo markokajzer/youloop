@@ -22,16 +22,27 @@ function getSVG() {
 // Add observer to video element to check if source was changed
 // This happens when changing to another video in a playlist
 function addObserver() {
+  var video = document.querySelector('video');
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if(mutation.attributeName === 'src') {
         rotated = false;
         updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
       }
+      else if(mutation.attributeName === 'loop') {
+        if(video.getAttribute('loop') === null) {
+          rotated = false;
+          updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
+        }
+        else {
+          rotated = true;
+          updateToggleControls(COLOR_ON, TITLE_ON, DEGREE_ON);
+        }
+      }
     });
   });
   var config = { attributes: true };
-  observer.observe(document.querySelector('video'), config);
+  observer.observe(video, config);
 }
 
 // Update title and color of loop controls
