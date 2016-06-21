@@ -19,6 +19,43 @@ function getSVG() {
   return svg;
 }
 
+// Add a button for toggling loop to the page
+function addToggleControls() {
+  var controls = document.querySelector('div.ytp-left-controls');
+  if(!controls) return false;
+  var newButton = document.createElement('a');
+  newButton.className = 'ytp-button youloop-button';
+  newButton.title = TITLE_OFF;
+  newButton.addEventListener('click', function() { toggleLoopState(); });
+  newButton.appendChild(getSVG());
+  controls.appendChild(newButton);
+  return true;
+}
+
+// Change loop state and start video again if ended
+function toggleLoopState() {
+  var video = document.querySelector('video');
+
+  if(video.ended && !video.loop) {
+    video.play();
+  }
+  video.loop = !video.loop;
+  rotated = !rotated;
+
+  var color = video.loop ? COLOR_ON : COLOR_OFF;
+  var title = video.loop ? TITLE_ON : TITLE_OFF;
+  var degree = video.loop ? DEGREE_ON : DEGREE_OFF;
+  updateToggleControls(color, title, degree);
+}
+
+// Update title and color of loop controls
+function updateToggleControls(newColor, newTitle, newDegree) {
+  var svg = document.querySelector('.youloop-button svg');
+  svg.style.fill = newColor;
+  svg.style.transform = 'rotate(' + newDegree + 'deg)';
+  document.querySelector('.youloop-button').setAttribute('title', newTitle);
+}
+
 // Add observer to video element to check if source was changed
 // This happens when changing to another video in a playlist
 function addObserver() {
@@ -45,43 +82,7 @@ function addObserver() {
   observer.observe(video, config);
 }
 
-// Update title and color of loop controls
-function updateToggleControls(newColor, newTitle, newDegree) {
-  var svg = document.querySelector('.youloop-button svg');
-  svg.style.fill = newColor;
-  svg.style.transform = 'rotate(' + newDegree + 'deg)';
-  document.querySelector('.youloop-button').setAttribute('title', newTitle);
-}
-
-// Change loop state and start video again if ended
-function toggleLoopState() {
-  var video = document.querySelector('video');
-
-  if(video.ended && !video.loop) {
-    video.play();
-  }
-  video.loop = !video.loop;
-  rotated = !rotated;
-
-  var color = video.loop ? COLOR_ON : COLOR_OFF;
-  var title = video.loop ? TITLE_ON : TITLE_OFF;
-  var degree = video.loop ? DEGREE_ON : DEGREE_OFF;
-  updateToggleControls(color, title, degree);
-}
-
-// Add a button for toggling loop to the page
-function addToggleControls() {
-  var controls = document.querySelector('div.ytp-left-controls');
-  if(!controls) return false;
-  var newButton = document.createElement('a');
-  newButton.className = 'ytp-button youloop-button';
-  newButton.title = TITLE_OFF;
-  newButton.addEventListener('click', function() { toggleLoopState(); });
-  newButton.appendChild(getSVG());
-  controls.appendChild(newButton);
-  return true;
-}
-
+// Init this whole thing!
 function init() {
   var checkForVideo = setInterval(function () {
     if(addToggleControls()) {
