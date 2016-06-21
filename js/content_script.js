@@ -76,7 +76,7 @@ function addToggleControls() {
   var newButton = document.createElement('a');
   newButton.className = 'ytp-button youloop-button';
   newButton.title = TITLE_OFF;
-  newButton.onclick = function() { toggleLoopState(); };
+  newButton.addEventListener('click', function() { toggleLoopState(); });
   newButton.appendChild(getSVG());
   controls.appendChild(newButton);
   return true;
