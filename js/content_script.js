@@ -54,6 +54,10 @@ function updateToggleControls(newColor, newTitle, newDegree) {
   svg.style.fill = newColor;
   svg.style.transform = 'rotate(' + newDegree + 'deg)';
   document.querySelector('.youloop-button').setAttribute('title', newTitle);
+  let checkbox = document.querySelector('[role=menuitemcheckbox]');
+  if(checkbox !== null) {
+    checkbox.setAttribute('aria-checked', rotated);
+  }
 }
 
 // Add observer to video element to check if source was changed
@@ -62,19 +66,16 @@ function addObserver() {
   var video = document.querySelector('video');
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if(mutation.attributeName === 'src') {
+      if(mutation.attributeName === 'src'  ||
+        (mutation.attributeName === 'loop' && video.getAttribute('loop') === null && rotated === true)) {
         rotated = false;
         updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
+        document.querySelector('[role=menuitemcheckbox]').setAttribute('aria-checked', rotated);
       }
-      else if(mutation.attributeName === 'loop') {
-        if(video.getAttribute('loop') === null) {
-          rotated = false;
-          updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
-        }
-        else {
-          rotated = true;
-          updateToggleControls(COLOR_ON, TITLE_ON, DEGREE_ON);
-        }
+      else if(mutation.attributeName === 'loop' && video.getAttribute('loop') !== null  && rotated === false) {
+        rotated = true;
+        updateToggleControls(COLOR_ON, TITLE_ON, DEGREE_ON);
+        document.querySelector('[role=menuitemcheckbox]').setAttribute('aria-checked', rotated);
       }
     });
   });
@@ -82,11 +83,35 @@ function addObserver() {
   observer.observe(video, config);
 }
 
+function addContextMenuListener() {
+  let video = document.querySelector('video');
+  video.addEventListener('contextmenu', function() {
+    let checkbox = null;
+    let interval = setInterval(function() {
+      checkbox = document.querySelector('[role=menuitemcheckbox]');
+      if(checkbox !== null) {
+        let oldElement = checkbox;
+        let newElement = oldElement.cloneNode(true);
+        newElement.setAttribute('aria-checked', rotated);
+        newElement.addEventListener('click', function() {
+          toggleLoopState();
+          setTimeout(function() {
+            document.querySelector('.ytp-contextmenu').style.display = 'none';
+          }, 100);
+        });
+        oldElement.parentNode.replaceChild(newElement, oldElement);
+        clearInterval(interval);
+      }
+    }, 50);
+  });
+}
+
 // Init this whole thing!
 function init() {
   var checkForVideo = setInterval(function () {
     if(addToggleControls()) {
       addObserver();
+      addContextMenuListener();
       clearInterval(checkForVideo);
     }
   }, 500);
