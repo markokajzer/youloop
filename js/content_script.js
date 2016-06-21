@@ -91,5 +91,5 @@ function init() {
   }, 500);
 }
 
-console.log('Enjoy the awesome music!');
 init();
+console.log('Enjoy the awesome music!');
