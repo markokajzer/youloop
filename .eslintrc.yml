@@ -1,0 +1,21 @@
+---
+
+extends: "airbnb-base"
+
+parserOptions:
+  ecmaVersion: 6
+
+env:
+  browser: true
+
+rules:
+  max-len:
+    - error
+    - 100
+    - 2
+    - ignoreComments: true
+
+  curly:
+    - error
+    - multi-or-nest
+    - consistent
