@@ -19,3 +19,8 @@ rules:
     - error
     - multi-or-nest
     - consistent
+
+  brace-style:
+    - error
+    - stroustrup
+    - allowSingleLine: true

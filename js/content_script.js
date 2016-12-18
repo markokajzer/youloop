@@ -62,21 +62,22 @@ function addObserver() {
   const video = document.querySelector('video');
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      if (mutation.attributeName === 'src' ||
-        (mutation.attributeName === 'loop' && video.getAttribute('loop') === null && rotated === true)) {
-        rotated = false;
-        updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
-        document.querySelector('[role=menuitemcheckbox]').setAttribute('aria-checked', rotated);
-      } else if (mutation.attributeName === 'loop' && video.getAttribute('loop') !== null && rotated === false) {
-        rotated = true;
-        updateToggleControls(COLOR_ON, TITLE_ON, DEGREE_ON);
-        document.querySelector('[role=menuitemcheckbox]').setAttribute('aria-checked', rotated);
+      if (mutation.attributeName === 'loop') {
+        if (video.getAttribute('loop') === null && rotated) {
+          rotated = false;
+          updateToggleControls(COLOR_OFF, TITLE_OFF, DEGREE_OFF);
+        }
+        else if (video.getAttribute('loop') !== null && !rotated) {
+          rotated = true;
+          updateToggleControls(COLOR_ON, TITLE_ON, DEGREE_ON);
+        }
       }
     });
   });
   observer.observe(video, { attributes: true });
 }
 
+// Add control over the YouTube context menu
 function addContextMenuListener() {
   const video = document.querySelector('video');
   video.addEventListener('contextmenu', () => {
