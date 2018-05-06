@@ -4,9 +4,13 @@ a.youloop-button {
 
 a.youloop-button svg {
   margin-bottom: 2px;
-  height: 18px;
-  width: 18px;
+  width: 52%;
   vertical-align: middle;
-  fill: white;
-  transition-duration: .3s;
+  fill: #fff;
+  transition-duration: 0.35s;
+}
+
+a.youloop-button.active svg {
+  fill: #f12b24;
+  transform: rotate(90deg);
 }
