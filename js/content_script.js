@@ -36,7 +36,7 @@ function insertYouLoopElement() {
 function toggleLoopState() {
   const video = document.querySelector('video');
   video.loop = !video.loop;
-  if (video.ended && video.loop) video.play();
+  if (video.loop) video.play();
 
   updateToggleControls();
 }
