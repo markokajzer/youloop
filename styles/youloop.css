@@ -11,6 +11,5 @@ a.youloop-button svg {
 }
 
 a.youloop-button.active svg {
-  fill: #f12b24;
   transform: rotate(90deg);
 }
