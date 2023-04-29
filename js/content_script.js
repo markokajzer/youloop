@@ -2,7 +2,7 @@ function getYouLoopSVG() {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 24 24');
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path.setAttribute('d', 'M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z');
+  path.setAttribute('d', 'M20,7.5v10c0,1.4-1.1,2.5-2.5,2.5H12v3l-4-4l4-4v3h5.5c0.3,0,0.5-0.2,0.5-0.5v-10H20z M16,5l-4-4v3H6.5C5.1,4,4,5.1,4,6.5v10h2v-10C6,6.2,6.2,6,6.5,6H12v3L16,5z');
   svg.appendChild(path);
   return svg;
 }
@@ -27,6 +27,7 @@ function insertYouLoopElement() {
   const newButton = document.createElement('a');
   newButton.classList.add('ytp-button', 'youloop-button');
   newButton.title = 'Loop Video';
+  newButton.style.opacity = '0.35'; // set opacity to 35% by default
   newButton.appendChild(getYouLoopSVG());
   newButton.addEventListener('click', toggleLoopState);
 
@@ -35,8 +36,15 @@ function insertYouLoopElement() {
 
 function toggleLoopState() {
   const video = document.querySelector('video');
-  video.loop = !video.loop;
-  if (video.loop) video.play();
+  const youloop = document.querySelector('.youloop-button');
+  if (youloop.style.opacity === '0.35') {
+    youloop.style.opacity = '0.8'; // set opacity to 80% when clicked
+    video.loop = true;
+    video.play();
+  } else {
+    youloop.style.opacity = '0.35'; // set opacity to 35% when clicked again
+    video.loop = false;
+  }
 
   updateToggleControls();
 }
